@@ -5,15 +5,19 @@ jdk:
 
 branches:
   only:
-    - github-beta
+    - master
 
 env:
   global:
-    - secure: pTctULZoZ0Ejip41hbaQq9HpfHE/TAIrcWZlZ2yDSQ4FDK4TllXTAZe/A6nWf+0mZ4JKMxYQcNaum52xtFUAmfyg+mpqJksedfZPcLmyev8AqWunUS1DSDi2MZ0po+ou4uUUYE/7ewT42HXyVSi/Rvx6MWsNqzv5k/sTQEq79FGXgnJ91JzWi/Mp1YzA5jm/yvd02OepLcqBXSyYr9QFqlI0xUuLj6Asenp2rT8Yq4wLQOIyQbBCdxaBKbni+tM4QdbfJrCEClK/MB/X0rVymO9eOA1TzoqxszldDbaPXzsum0cbLpPwPP4Ix3R+jLQxvjQ3fC7OM/QgpS0bfLXfoQ==
+    # USERNAME=****
+    - secure: uXysKEBMSfoLrpdJ6XB3gSaW8rgG/tFqzMjYkxgT+ZoznttkXLj8cMYidr+NI02SMLQyILzlozeIUL4ygymBC0dNhTB9kSP0dAlPOTgXeXQYWO5qd9CjPxxs7gp+STCTwt62xOGmWsZIiJJ2YKayupMrn46j5Fzk3vlFhO9D+prlQ+4w/FFcRfyZQEQHh7qvXGIeCIMZuexs0HorTU6eI1RsLzcmg+RsrNbLLK4swqF62fCdi8Ke/axIRBi23p4xrhsiNpLZ9h74SDWUIn6Wwp4Rrfg2QWlGwhDa1sg2BpGX0y0sNMlLYDQ6evSCMvZXAuCSFT6OeHSRnRbPMYbCww==
+    # PASSWORD=****
+    - secure: M2eMjWBzYVliAHowoiCrOqp4REzXWR80t+9Yg8YGxVe7gxibRVbRRcShXZwrLvfAgz0g1DbNbsJrEa6oEwvzAFPKbYE5Sbok+kDZbU6uX2R8pmiSWmspGaAN9NUxFsgpYLDlGSSp2zvlU3oxUcw0O9KKAb8bM81op8kgiFa3FLjh/E65xTdQBcwYpohx1w3h1n7r3fPb5G9RMxJ/VB4a0f02CCVj0LmaOujtEgx9M9k3WaIvzkxQfuUJ04BN7VR84j0lUeCsQdIDkz1czjtHKtsRT84cdqmD53k7g9paWTPd5PdwJBKkT7acmPhTC9pmdpBAtSgEBgxxuWcvSgf5Ag==
 
 build:
   ci:
     - mkdir -p shippable/testresults && mkdir -p shippable/codecoverage
+    - sed -i "s/{USERNAME}/$USERNAME/" .m2/settings.xml
     - sed -i "s/{PASSWORD}/$PASSWORD/" .m2/settings.xml
     - mvn -q -B -s .m2/settings.xml -U clean cobertura:cobertura deploy
     - docker build -t ttrahan/javahelloworld:$BRANCH.$BUILD_NUMBER .
@@ -21,8 +25,8 @@ build:
 
 integrations:
   hub:
-    - integrationName: ttrahan-dh
-      type: docker
+    - integrationName: quay-valassis-huntd
+      type: quay.io
 
   notifications:
     - integrationName: trigger-javahello-pipeline
@@ -31,7 +35,7 @@ integrations:
         - versionName=$BRANCH.$BUILD_NUMBER
       branches:
         only:
-          - github-beta
+          - master
       on_success: always
       on_failure: never
       on_start: never
