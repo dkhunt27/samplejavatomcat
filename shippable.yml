@@ -20,8 +20,8 @@ build:
     - sed -i "s/{USERNAME}/$USERNAME/" .m2/settings.xml
     - sed -i "s/{PASSWORD}/$PASSWORD/" .m2/settings.xml
     - mvn -q -B -s .m2/settings.xml -U clean cobertura:cobertura deploy
-    - docker build -t ttrahan/javahelloworld:$BRANCH.$BUILD_NUMBER .
-    - docker push ttrahan/javahelloworld:$BRANCH.$BUILD_NUMBER
+    - docker build -t quay.io/valassis/helloworld-nodejs-app2:$BRANCH.$BUILD_NUMBER .
+    - docker push quay.io/valassis/helloworld-nodejs-app2:$BRANCH.$BUILD_NUMBER
 
 integrations:
   hub:
