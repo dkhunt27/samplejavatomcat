@@ -25,7 +25,7 @@ build:
 
 integrations:
   hub:
-    - integrationName: quay-valassis-huntd
+    - integrationName: quayConduitCiCdSubscription
       type: quay.io
 
   notifications:
