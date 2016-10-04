@@ -28,14 +28,14 @@ integrations:
     - integrationName: quayConduitCiCdSubscription
       type: quay.io
 
-  notifications:
-    - integrationName: trigger-javahello-pipeline
-      type: webhook
-      payload:
-        - versionName=$BRANCH.$BUILD_NUMBER
-      branches:
-        only:
-          - master
-      on_success: always
-      on_failure: never
-      on_start: never
+#  notifications:
+#    - integrationName: trigger-javahello-pipeline
+#      type: webhook
+#      payload:
+#        - versionName=$BRANCH.$BUILD_NUMBER
+#      branches:
+#        only:
+#          - master
+#      on_success: always
+#      on_failure: never
+#      on_start: never
