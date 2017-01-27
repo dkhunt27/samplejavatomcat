@@ -10,7 +10,7 @@
 
 	<form action="index" method="post">
 		<center>
-			<h2>Hello there ${firstName} ${lastName}!</h2>
+			<h2>Hello, ${firstName} ${lastName}!</h2>
 			<h3>
 				<label for="name">Enter your name:</label> <input name="firstName"
 					id="firstName" type="text"> <input name="lastName"
