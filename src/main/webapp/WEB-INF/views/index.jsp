@@ -7,8 +7,8 @@
 <title>Hello!</title>
 </head>
 <body>
-
 	<form action="index" method="post">
+
 		<center>
 			<h2>Hello there ${firstName} ${lastName}!</h2>
 			<h3>
